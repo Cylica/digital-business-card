@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Business Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Your Name</h1>
+        <p>Job Title</p>
+        <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+        <p>Phone: <a href="tel:+123456789">+123456789</a></p>
+        <p>Website: <a href="https://yourwebsite.com" target="_blank">yourwebsite.com</a></p>
+    </div>
+	<script>
+    fetch('http://localhost:3000/api/card')
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.card').innerHTML = `
+                <h1>${data.name}</h1>
+                <p>${data.jobTitle}</p>
+                <p>Email: <a href="mailto:${data.email}">${data.email}</a></p>
+                <p>Phone: <a href="tel:${data.phone}">${data.phone}</a></p>
+                <p>Website: <a href="${data.website}" target="_blank">${data.website}</a></p>
+            `;
+        });
+</script>
+</body>
+</html>
