@@ -16,7 +16,7 @@ app.get('/api/card', (req, res) => {
     });
 });
 
-// Start the server
-app.listen(port, () => {
+// Start the server and listen on all available network interfaces
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server running on http://localhost:${port}`);
 });
