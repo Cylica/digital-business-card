@@ -1,9 +1,14 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;  // Use Railway's dynamic port
+const port = process.env.PORT || 8080;  // Use Railway's dynamic port
 
 // Middleware to parse JSON
 app.use(express.json());
+
+// Root route for the home page
+app.get('/', (req, res) => {
+  res.send('Welcome to the Digital Business Card API!');
+});
 
 // API endpoint
 app.get('/api/card', (req, res) => {
