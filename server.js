@@ -14,7 +14,8 @@ app.get('/', (req, res) => {
 });
 
 // API endpoint to generate a QR code
-app.get('/api/qr', (req, res) => {
+app.get('/generate-qr', (req, res) => {
+  // QR code generation code
   const data = {
     name: "Your Name",
     jobTitle: "Your Job Title",
@@ -34,7 +35,8 @@ app.get('/api/qr', (req, res) => {
 });
 
 // API endpoint for business card info (GET request)
-app.get('/api/card', (req, res) => {
+app.get('/generate-qr', (req, res) => {
+  // QR code generation code
     res.json({
         name: "Your Name",
         jobTitle: "Your Job Title",
