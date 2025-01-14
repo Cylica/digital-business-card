@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Business Card</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Business Card</title>
 </head>
 <body>
-    <div class="card">
-        <h1>Your Name</h1>
-        <p>Job Title</p>
-        <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-        <p>Phone: <a href="tel:+123456789">+123456789</a></p>
-        <p>Website: <a href="https://yourwebsite.com" target="_blank">yourwebsite.com</a></p>
-    </div>
-	<script>
-    fetch('http://localhost:3000/api/card')
-        .then(response => response.json())
-        .then(data => {
-            document.querySelector('.card').innerHTML = `
-                <h1>${data.name}</h1>
-                <p>${data.jobTitle}</p>
-                <p>Email: <a href="mailto:${data.email}">${data.email}</a></p>
-                <p>Phone: <a href="tel:${data.phone}">${data.phone}</a></p>
-                <p>Website: <a href="${data.website}" target="_blank">${data.website}</a></p>
-            `;
-        });
-</script>
+  <h1>Digital Business Card</h1>
+  <div>
+    <h3>Your Card Info</h3>
+    <p>Name: <span id="name"></span></p>
+    <p>Job Title: <span id="jobTitle"></span></p>
+    <p>Email: <span id="email"></span></p>
+    <p>Phone: <span id="phone"></span></p>
+    <p>Website: <span id="website"></span></p>
+  </div>
+  <div>
+    <h3>QR Code</h3>
+    <img id="qrCode" src="" alt="QR Code">
+  </div>
+  <script>
+    // Fetch the business card info and update the page
+    fetch('/api/card')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('name').textContent = data.name;
+        document.getElementById('jobTitle').textContent = data.jobTitle;
+        document.getElementById('email').textContent = data.email;
+        document.getElementById('phone').textContent = data.phone;
+        document.getElementById('website').textContent = data.website;
+      });
+
+    // Fetch the QR code and display it on the page
+    fetch('/api/qr')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('qrCode').src = data.qrCodeUrl;
+      });
+  </script>
 </body>
 </html>
